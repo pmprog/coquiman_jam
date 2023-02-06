@@ -1,7 +1,12 @@
 
 #include "boot.h"
 #include <kit.h>
-#include "../resources/res_palette.h"
+#include "../resources/res_palette_game.h"
+#include "../resources/res_graphics_level.h"
+#include "../resources/res_map_level.h"
+
+static const Colour colour_black = { 0, 0, 0 };
+
 
 StageRecord bootstage = { bootstage_start, bootstage_update, bootstage_finish };
 
@@ -11,10 +16,22 @@ void bootstage_start()
     palette_setscreencolours(0, palette_game_len, palette_game);
     palette_setspritecolours(0, palette_game_len, palette_game);
 
-    palette_setscreencolours(0, 1, &palette_game[32]);
-    palette_setspritecolours(0, 1, &palette_game[32]);
+    palette_setscreencolours(0, 1, &colour_black);
+    palette_setspritecolours(0, 1, &colour_black);
 
-    //tilemap_characterset_set(0, tilesheet, 0, tilesheet_tile_count, 8);  // Load up the map characters
+    tilemap_characterset_set(0, gfx_level, 0, gfx_level_tile_count, 8);  // Load up the map characters
+
+    for(int y = 0; y < 20; y++)
+    {
+        for(int x = 0; x < 32; x++)
+        {
+            tilemap_map_settile( 0, 0, x, y, map_level_skyline_data[ (y * map_level_skyline_width) + x ] );
+            tilemap_map_settile( 0, 1, x, y, map_level_cityline_data[ (y * map_level_skyline_width) + x ] );
+            tilemap_map_settile( 0, 2, x, y, map_level_flats_data[ (y * map_level_skyline_width) + x ] );
+        }
+    }
+
+
     //sprites_characterset_set(tilesheet, 0, 24, 8);
     sprites_clear();
 
@@ -28,6 +45,7 @@ void bootstage_finish()
 
 void bootstage_update()
 {
+    /**
     if (input_controller_button_pressed(0, BUTTON_QUIT))
     {
         kit_change_stage(null);
@@ -142,5 +160,5 @@ void bootstage_update()
     {
         palette_setscreencolours(0, 1, &palette_game[32 + ((kit_stage_time - 128) >> 2)]);
     }
-
+    */
 }
