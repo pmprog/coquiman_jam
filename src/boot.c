@@ -2,11 +2,14 @@
 #include "boot.h"
 #include <kit.h>
 #include "../resources/res_palette_game.h"
-#include "../resources/res_graphics_level.h"
+#include "../resources/res_graphics_titlebkg.h"
 #include "../resources/res_map_level.h"
 
 static const Colour colour_black = { 0, 0, 0 };
 
+static u16 x = 0;
+static u16 y = 0;
+static u16 c = 1;
 
 StageRecord bootstage = { bootstage_start, bootstage_update, bootstage_finish };
 
@@ -19,20 +22,8 @@ void bootstage_start()
     palette_setscreencolours(0, 1, &colour_black);
     palette_setspritecolours(0, 1, &colour_black);
 
-    tilemap_characterset_set(0, gfx_level, 0, gfx_level_tile_count, 8);  // Load up the map characters
+    tilemap_characterset_set(0, gfx_titlebkg, 1, 510, 8);  // Load up the map characters
 
-    for(int y = 0; y < 20; y++)
-    {
-        for(int x = 0; x < 32; x++)
-        {
-            tilemap_map_settile( 0, 0, x, y, map_level_skyline_data[ (y * map_level_skyline_width) + x ] );
-            tilemap_map_settile( 0, 1, x, y, map_level_cityline_data[ (y * map_level_skyline_width) + x ] );
-            tilemap_map_settile( 0, 2, x, y, map_level_flats_data[ (y * map_level_skyline_width) + x ] );
-        }
-    }
-
-
-    //sprites_characterset_set(tilesheet, 0, 24, 8);
     sprites_clear();
 
     music_play(0);
@@ -45,120 +36,12 @@ void bootstage_finish()
 
 void bootstage_update()
 {
-    /**
-    if (input_controller_button_pressed(0, BUTTON_QUIT))
-    {
-        kit_change_stage(null);
-        return;
-    }
-    if(kit_stage_time >= 160)
-    {
-        return;
-    }
 
-
-    switch(kit_stage_time)
+    if(kit_stage_time % 16 == 0)
     {
-        case 64:
-            for(int x = 0; x < 32; x++)
-            {
-                tilemap_map_settile(0, 1, x, 13, 6);
-                tilemap_map_settile_ex(0, 1, x, 14, 6, MIRROR_VERTICAL);
-            }
-            break;
-        case 66:
-            for(int x = 0; x < 32; x++)
-            {
-                tilemap_map_settile(0, 1, x, 13, 7);
-                tilemap_map_settile_ex(0, 1, x, 14, 7, MIRROR_VERTICAL);
-            }
-            break;
-        case 68:
-            for(int x = 0; x < 32; x++)
-            {
-                tilemap_map_settile(0, 1, x, 13, 8);
-                tilemap_map_settile_ex(0, 1, x, 14, 8, MIRROR_VERTICAL);
-            }
-            break;
-        case 70:
-            for(int x = 0; x < 32; x++)
-            {
-                tilemap_map_settile(0, 1, x, 13, 9);
-                tilemap_map_settile_ex(0, 1, x, 14, 9, MIRROR_VERTICAL);
-            }
-            break;
-        case 72:
-            for(int x = 0; x < 32; x++)
-            {
-                tilemap_map_settile(0, 1, x, 13, 10);
-                tilemap_map_settile_ex(0, 1, x, 14, 10, MIRROR_VERTICAL);
-            }
-            break;
-        case 74:
-            for(int x = 0; x < 32; x++)
-            {
-                tilemap_map_settile(0, 1, x, 13, 11);
-                tilemap_map_settile_ex(0, 1, x, 14, 11, MIRROR_VERTICAL);
-            }
-            break;
-        case 76:
-            for(int x = 0; x < 32; x++)
-            {
-                tilemap_map_settile(0, 1, x, 13, 12);
-                tilemap_map_settile_ex(0, 1, x, 14, 12, MIRROR_VERTICAL);
-            }
-            break;
-        case 78:
-            for(int x = 0; x < 32; x++)
-            {
-                tilemap_map_settile(0, 1, x, 12, 9);
-                tilemap_map_settile(0, 1, x, 13, 13);
-                tilemap_map_settile(0, 1, x, 14, 13);
-                tilemap_map_settile_ex(0, 1, x, 15, 9, MIRROR_VERTICAL);
-            }
-            break;
-        case 79:
-            for(int x = 0; x < 32; x++)
-            {
-                tilemap_map_settile(0, 1, x, 12, 10);
-                tilemap_map_settile_ex(0, 1, x, 15, 10, MIRROR_VERTICAL);
-            }
-            break;
-        case 80:
-            for(int x = 0; x < 32; x++)
-            {
-                tilemap_map_settile(0, 1, x, 12, 11);
-                tilemap_map_settile_ex(0, 1, x, 15, 11, MIRROR_VERTICAL);
-            }
-            break;
-        case 81:
-            for(int x = 0; x < 32; x++)
-            {
-                tilemap_map_settile(0, 1, x, 11, 9);
-                tilemap_map_settile(0, 1, x, 12, 13);
-                tilemap_map_settile(0, 1, x, 15, 13);
-                tilemap_map_settile_ex(0, 1, x, 16, 9, MIRROR_VERTICAL);
-            }
-            break;
-        case 82:
-            for(int x = 0; x < 32; x++)
-            {
-                tilemap_map_settile(0, 1, x, 11, 10);
-                tilemap_map_settile_ex(0, 1, x, 16, 10, MIRROR_VERTICAL);
-            }
-            break;
-        case 83:
-            for(int x = 0; x < 32; x++)
-            {
-                tilemap_map_settile(0, 1, x, 11, 11);
-                tilemap_map_settile_ex(0, 1, x, 16, 11, MIRROR_VERTICAL);
-            }
-            break;
+        tilemap_map_settile(0, 3, x, y, c);
+        if( c < 510) {c++;}
+        x = (x + 1) % 30;
+        if(x == 0) { y++;}
     }
-
-    if(kit_stage_time >= 128 && (kit_stage_time - 128) < 32)
-    {
-        palette_setscreencolours(0, 1, &palette_game[32 + ((kit_stage_time - 128) >> 2)]);
-    }
-    */
 }
