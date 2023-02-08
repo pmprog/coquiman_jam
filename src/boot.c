@@ -2,8 +2,8 @@
 #include "boot.h"
 #include <kit.h>
 #include "../resources/res_palette_game.h"
-#include "../resources/res_graphics_titlebkg.h"
-#include "../resources/res_map_level.h"
+#include "../resources/res_graphics_title.h"
+#include "../resources/res_map_title.h"
 
 static const Colour colour_black = { 0, 0, 0 };
 
@@ -39,7 +39,7 @@ void bootstage_update()
 
     if(kit_stage_time % 16 == 0)
     {
-        tilemap_map_settile(0, 3, x, y, c);
+        tilemap_map_settile( 0, 0, x, y, map_title_gfx_titlebkg_map_data[ (y * map_title_gfx_titlebkg_map_width) + x ] );
         if( c < 510) {c++;}
         x = (x + 1) % 30;
         if(x == 0) { y++;}
