@@ -22,7 +22,7 @@ void bootstage_start()
     palette_setscreencolours(0, 1, &colour_black);
     palette_setspritecolours(0, 1, &colour_black);
 
-    tilemap_characterset_set(0, gfx_titlebkg, 1, 510, 8);  // Load up the map characters
+    tilemap_characterset_set(0, gfx_titlebkg_tiled, 0, gfx_titlebkg_tiled_tile_count, 8);  // Load up the map characters
 
     sprites_clear();
 
@@ -37,11 +37,11 @@ void bootstage_finish()
 void bootstage_update()
 {
 
-    if(kit_stage_time % 16 == 0)
-    {
+//    if(kit_stage_time % 2 == 0)
+//    {
         tilemap_map_settile( 0, 0, x, y, map_title_gfx_titlebkg_map_data[ (y * map_title_gfx_titlebkg_map_width) + x ] );
         if( c < 510) {c++;}
         x = (x + 1) % 30;
         if(x == 0) { y++;}
-    }
+//    }
 }
