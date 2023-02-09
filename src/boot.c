@@ -4,8 +4,10 @@
 #include "../resources/res_palette_game.h"
 #include "../resources/res_graphics_title.h"
 #include "../resources/res_map_title.h"
+#include "intro.h"
 
 static const Colour colour_black = { 0, 0, 0 };
+static const Colour colour_white = { 255, 255, 255 };
 
 static u16 x = 0;
 static u16 y = 0;
@@ -21,8 +23,8 @@ void bootstage_start()
     palette_setscreencolours(0, palette_game_len, palette_game);
     palette_setspritecolours(0, palette_game_len, palette_game);
 
-    palette_setscreencolours(0, 1, &colour_black);
-    palette_setspritecolours(0, 1, &colour_black);
+    palette_setscreencolours(0, 1, &colour_white);
+    palette_setspritecolours(0, 1, &colour_white);
 
     tilemap_characterset_set(0, gfx_titlebkg_tiled, 0, gfx_titlebkg_tiled_tile_count, 8);  // Load up the map characters
 
@@ -38,7 +40,7 @@ void bootstage_finish()
 
 void bootstage_update()
 {
-    if(kit_stage_time % 6 != 0) {return;}
+    if(kit_stage_time % 4 != 0) {return;}
 
     u8 completed = 0;
 
@@ -62,4 +64,8 @@ void bootstage_update()
         }
     }
 
+    if(completed == 30)
+    {
+        kit_change_stage(&introstage);
+    }
 }
