@@ -33,7 +33,7 @@ static const u8 animation_3_frames[] = {
 #define animation_play_count     24
 static const u8 animation_play_order[] = {
     1, 1, 1, 1, 1, 2,
-    1, 1, 1, 1, 1, 2,
+    1, 1, 1, 1, 1, 1,
     1, 1, 1, 1, 1, 2,
     1, 1, 1, 1, 1, 3,
 };

@@ -1,8 +1,8 @@
 
 #include "res_map_title.h"
 
-const uint8_t map_title_gfx_titlebkg_map_width = 30;
-const uint8_t map_title_gfx_titlebkg_map_height = 20;
+const uint16_t map_title_gfx_titlebkg_map_width = 30;
+const uint16_t map_title_gfx_titlebkg_map_height = 20;
 const uint16_t map_title_gfx_titlebkg_map_data[] = {
    1,   2,   3,   4,   5,   6,   7,   8,   9,   9,  10,  11,  12,  13,  14,   9,   9,   9,   9,  15,  16,  17,  18,  19,  20,  21,  22,  23,  24,  25,
   26,  27,  28,   9,   9,   9,  29,  30,  31,  32,  33,   9,   9,   9,   9,  34,  35,  36,  37,  38,  39,  40,  22,  41,  42,  43,  44,  45,  46,  47,

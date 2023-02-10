@@ -1,8 +1,8 @@
 
 #include "res_map_level.h"
 
-const uint8_t map_level_skyline_width = 32;
-const uint8_t map_level_skyline_height = 20;
+const uint16_t map_level_skyline_width = 32;
+const uint16_t map_level_skyline_height = 20;
 const uint16_t map_level_skyline_data[] = {
   12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  22,  23,  24,  25,  26,  27,  28,  29,  30,  31,  12,  12,  12,  12,  12,  12,  12,  13,
   12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  12,  54,  55,  56,  57,  58,  59,  60,  61,  62,  63,  12,  12,  12,  12,  12,  44,  44,  45,
@@ -26,8 +26,8 @@ const uint16_t map_level_skyline_data[] = {
   52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,  52,
 };
 
-const uint8_t map_level_cityline_width = 32;
-const uint8_t map_level_cityline_height = 20;
+const uint16_t map_level_cityline_width = 32;
+const uint16_t map_level_cityline_height = 20;
 const uint16_t map_level_cityline_data[] = {
    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
@@ -51,8 +51,8 @@ const uint16_t map_level_cityline_data[] = {
  544, 545, 546, 547, 548, 549, 550, 551, 552, 553, 554, 555, 556, 557, 558, 559, 560, 561, 562, 563, 564, 565, 566, 567, 568, 569,   0, 297, 290, 291, 294, 295,
 };
 
-const uint8_t map_level_flats_width = 32;
-const uint8_t map_level_flats_height = 20;
+const uint16_t map_level_flats_width = 32;
+const uint16_t map_level_flats_height = 20;
 const uint16_t map_level_flats_data[] = {
    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,
    0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,   0,

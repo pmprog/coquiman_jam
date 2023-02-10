@@ -9,7 +9,7 @@
 extern "C" {
 #endif
 
-#define palette_game_len 23
+#define palette_game_len 24
 extern const Colour palette_game[];
 
 #ifdef __cplusplus

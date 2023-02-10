@@ -8,16 +8,16 @@
 extern "C" {
 #endif
 
-extern const uint8_t map_level_skyline_width;
-extern const uint8_t map_level_skyline_height;
+extern const uint16_t map_level_skyline_width;
+extern const uint16_t map_level_skyline_height;
 extern const uint16_t map_level_skyline_data[];
 
-extern const uint8_t map_level_cityline_width;
-extern const uint8_t map_level_cityline_height;
+extern const uint16_t map_level_cityline_width;
+extern const uint16_t map_level_cityline_height;
 extern const uint16_t map_level_cityline_data[];
 
-extern const uint8_t map_level_flats_width;
-extern const uint8_t map_level_flats_height;
+extern const uint16_t map_level_flats_width;
+extern const uint16_t map_level_flats_height;
 extern const uint16_t map_level_flats_data[];
 
 
