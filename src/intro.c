@@ -2,9 +2,10 @@
 #include "intro.h"
 #include <kit.h>
 
-#include "../resources/res_graphics_titlef.h"
-#include "../resources/res_map_titlef.h"
 #include "../resources/res_graphics_title.h"
+#include "../resources/res_graphics_titlef.h"
+#include "../resources/res_graphics_titles.h"
+#include "../resources/res_map_titlef.h"
 
 static const Colour colour_black = { 0, 0, 0 };
 
@@ -41,7 +42,8 @@ static const u8 animation_play_order[] = {
 static u8 introstage_animation_play = 0;
 static u8 introstage_animation = 0;
 static u16 introstage_animation_time = 0;
-
+static s16 introstage_text1y = -20;
+static s16 introstage_text2y = 170;
 
 void introstage_renderanimframe(u8 framenumber);
 void introstage_playnextanim();
@@ -52,6 +54,7 @@ void introstage_start()
     palette_setspritecolours(0, 1, &colour_black);
 
     tilemap_characterset_set(0, gfx_titlefgn_tiled, gfx_titlebkg_tiled_tile_count << 1, gfx_titlefgn_tiled_tile_count, 8);  // Load up the map characters
+    sprites_characterset_set(gfx_titlesprites, 0, gfx_titlesprites_tile_count, 8);
 
     introstage_animation = 0;
     introstage_animation_time = 0;
@@ -77,6 +80,25 @@ void introstage_update()
                 introstage_animation_play = animation_play_count - 1;
                 introstage_playnextanim();
             }
+
+            introstage_text1y = -90;
+            introstage_text2y = 170;
+
+            for(int si = 0; si < 24; si++)
+            {
+                sprites_configure( si, si << 3, 8 , 0, SPRITE_SIZE_32x8 );
+
+
+                if( si < 8 )
+                {
+                    sprites_position(si, 3, 1, 15 + ((si % 4) * 32), introstage_text1y + ((si & 0x04) << 1), SPRITE_MIRROR_NONE);
+                }
+                else
+                {
+                    sprites_position(si, 3, 1, 112 + ((si % 4) * 32), introstage_text2y + (((si-8) & 0x0C) << 1), SPRITE_MIRROR_NONE);
+                }
+            }
+
             break;
 
         case 1:
@@ -96,6 +118,29 @@ void introstage_update()
             introstage_animation_time++;
             if(introstage_animation_time >= animation_3_frame_count) { introstage_playnextanim(); }
             break;
+    }
+
+    if(introstage_animation != 0)
+    {
+        if( introstage_text1y < 2 )
+        {
+            introstage_text1y++;
+            for(int si = 0; si < 8; si++)
+            {
+                
+                sprites_position(si, 3, 1, 15 + ((si % 4) * 32), introstage_text1y + ((si & 0x04) << 1), SPRITE_MIRROR_NONE);
+            }
+        }
+        if( introstage_text2y > 124 )
+        {
+            introstage_text2y--;
+            for(int si = 8; si < 24; si++)
+            {
+                
+                sprites_position(si, 3, 1, 112 + ((si % 4) * 32), introstage_text2y + (((si-8) & 0x0C) << 1), SPRITE_MIRROR_NONE);
+            }
+        }
+
     }
 
 }
